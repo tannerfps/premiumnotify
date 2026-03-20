@@ -1,0 +1,22 @@
+{
+  "botToken": "PUT_YOUR_BOT_TOKEN_HERE_OR_USE_RENDER_ENV_VAR",
+  "guildId": "1339056989677813771",
+  "ticketPrefix": "ticket-",
+  "staffRoleIds": [
+    "1339617147147784313"
+  ],
+  "alerts": {
+    "staffRoleToDmId": "1339617147147784313",
+    "ownerUserId": "1338917571227025469",
+    "staffAlertHours": 8,
+    "ownerAlertHours": 24
+  },
+  "scan": {
+    "intervalMinutes": 5
+  },
+  "branding": {
+    "footerText": "Bot made by tanner.fps",
+    "staffEmbedColor": "#F59E0B",
+    "ownerEmbedColor": "#EF4444"
+  }
+}

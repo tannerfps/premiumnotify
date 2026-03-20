@@ -1,0 +1,25 @@
+services:
+  - type: worker
+    name: ticket-overdue-bot
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: GUILD_ID
+        value: 1339056989677813771
+      - key: TICKET_PREFIX
+        value: ticket-
+      - key: STAFF_ALERT_ROLE_ID
+        value: 1339617147147784313
+      - key: OWNER_USER_ID
+        value: 1338917571227025469
+      - key: STAFF_ALERT_HOURS
+        value: "8"
+      - key: OWNER_ALERT_HOURS
+        value: "24"
+      - key: CHECK_INTERVAL_MINUTES
+        value: "5"
