@@ -279,20 +279,28 @@ client.on("messageCreate", async (message) => {
         last_nonstaff_user_id: existing?.last_nonstaff_user_id ?? null,
         updated_at: nowMs(),
       });
-      console.log(`Staff reply reset ticket ${message.channel.name}`);
     } else {
+      const alreadyWaitingOnStaff = existing?.waiting_on_staff === 1;
+
       upsertTicket.run({
         channel_id: message.channel.id,
         guild_id: message.guild.id,
         waiting_on_staff: 1,
-        last_user_message_at: timestamp,
+        last_user_message_at: alreadyWaitingOnStaff
+          ? existing?.last_user_message_at ?? timestamp
+          : timestamp,
         last_staff_message_at: existing?.last_staff_message_at ?? null,
-        alerted_staff: 0,
-        alerted_owner: 0,
+        alerted_8h: alreadyWaitingOnStaff ? existing?.alerted_8h ?? 0 : 0,
+        alerted_24h: alreadyWaitingOnStaff ? existing?.alerted_24h ?? 0 : 0,
         last_nonstaff_user_id: message.author.id,
         updated_at: nowMs(),
       });
-      console.log(`User message started waiting timer for ${message.channel.name}`);
+
+      if (alreadyWaitingOnStaff) {
+        console.log(`User sent another message, timer kept for ${message.channel.name}`);
+      } else {
+        console.log(`User message started waiting timer for ${message.channel.name}`);
+      }
     }
   } catch (err) {
     console.error("messageCreate error:", err);
