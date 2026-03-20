@@ -290,8 +290,8 @@ client.on("messageCreate", async (message) => {
           ? existing?.last_user_message_at ?? timestamp
           : timestamp,
         last_staff_message_at: existing?.last_staff_message_at ?? null,
-        alerted_8h: alreadyWaitingOnStaff ? existing?.alerted_8h ?? 0 : 0,
-        alerted_24h: alreadyWaitingOnStaff ? existing?.alerted_24h ?? 0 : 0,
+        alerted_staff: alreadyWaitingOnStaff ? existing?.alerted_staff ?? 0 : 0,
+        alerted_owner: alreadyWaitingOnStaff ? existing?.alerted_owner ?? 0 : 0,
         last_nonstaff_user_id: message.author.id,
         updated_at: nowMs(),
       });
